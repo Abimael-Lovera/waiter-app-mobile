@@ -8,7 +8,8 @@ import { Category, Icon } from './styles';
 export function Categories() {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
 
-  function handleSelectCategory(category: string) {
+  function handleSelectCategory(categoryId: string) {
+    const category = selectedCategory === categoryId ? '' : categoryId;
     setSelectedCategory(category);
   }
 
@@ -21,16 +22,28 @@ export function Categories() {
         data={categories}
         keyExtractor={category => category._id}
         renderItem={({ item: category}) => {
+          const isSelected = selectedCategory === category._id;
+
           return (
             <Category
               key={category._id}
               onPress={() => handleSelectCategory(category._id)}
             >
               <Icon>
-                <Text>{category.icon}</Text>
+                <Text
+                  opacity={isSelected ? 1: 0.5}
+                >
+                  {category.icon}
+                </Text>
               </Icon>
 
-              <Text size={14} weight="600">{category.name}</Text>
+              <Text
+                size={14}
+                weight="600"
+                opacity={isSelected ? 1: 0.5}
+              >
+                {category.name}
+              </Text>
             </Category>
           );
         }}
