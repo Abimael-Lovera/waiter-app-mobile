@@ -4,7 +4,7 @@ import { products } from '../../mocks/products';
 import { formatCurrency } from '../../utils/formatCurrency';
 import { Text } from '../Text';
 
-import { Product, ProductImage, ProductDetails } from './styles';
+import { Product, ProductImage, ProductDetails, Separator } from './styles';
 
 export function Menu() {
   return(
@@ -14,6 +14,7 @@ export function Menu() {
         contentContainerStyle={{ paddingHorizontal: 24 }}
         data={products}
         keyExtractor={product => product._id}
+        ItemSeparatorComponent={Separator}
         renderItem={({ item: product }) =>(
           <Product>
             <ProductImage
